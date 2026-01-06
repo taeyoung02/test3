@@ -147,8 +147,8 @@ def load_car_json_data(json_filename: str) -> Optional[Dict[str, Any]]:
 # Embedding
 # ---------------------------------------------------------------------------
 
-def embed_text(text: str) -> List[float]:
-    resp = openai_client.embeddings.create(
+async def embed_text(text: str) -> List[float]:
+    resp = await openai_client.embeddings.create(
         model=OPENAI_MODEL_EMBED,
         input=text,
     )
@@ -175,8 +175,8 @@ ALL_SECTIONS = [
 # Vector retrieval (chunk-level)
 # ---------------------------------------------------------------------------
 
-def search_raw_hits(question: str, sections: List[str], k_per_section: int = 30) -> List[ScoredPoint]:
-    vector = embed_text(question)
+async def search_raw_hits(question: str, sections: List[str], k_per_section: int = 30) -> List[ScoredPoint]:
+    vector = await embed_text(question)
     hits: List[ScoredPoint] = []
     
     if sections:
@@ -245,7 +245,7 @@ def select_top_cars(grouped, top_n=3):
 # ---------------------------------------------------------------------------
 # 해야할 사전 작업 추론
 # ---------------------------------------------------------------------------
-def classify_pre_task(
+async def classify_pre_task(
     question: str,
     history_summary: List[Dict[str, str]] = None,
     customer_info: Dict[str, Any] = None
@@ -274,7 +274,7 @@ def classify_pre_task(
     )
     
     try:
-        resp = openai_client.responses.create(
+        resp = await openai_client.responses.create(
             model=OPENAI_MODEL_CHAT,
             input=[
                 {"role": "system", "content": PRE_STAGE_CLASSIFICATION_SYSTEM},
@@ -474,10 +474,10 @@ def save_conversation_history(history: List[Dict[str, str]], history_file: Path)
 #         print(f"설득 단계 car_json_data 처리 중 오류: {e}")
 
 
-def guess_sections(question: str, history_summary: List[Dict[str, str]] = None) -> List[str]:
+async def guess_sections(question: str, history_summary: List[Dict[str, str]] = None) -> List[str]:
     user_prompt = PROMPT_REGISTRY["guess_sections"]["user_template"].format(question=question, history_summary=history_summary) 
 
-    resp = openai_client.responses.create(
+    resp = await openai_client.responses.create(
         model=OPENAI_MODEL_CHAT,
         input=[
             {"role": "system", "content": PROMPT_REGISTRY["guess_sections"]["system"]},
@@ -496,7 +496,7 @@ async def update_cutsomer_info(question: str, customer_info: Dict[str, Any]) -> 
     messages.append({"role": "system", "content": PROMPT_REGISTRY['user_info_update']['system']})
     messages.append({"role": "user", "content": PROMPT_REGISTRY['user_info_update']['user_template'].format(customer_info=customer_info, question=question)})
 
-    resp = openai_client.responses.create(
+    resp = await openai_client.responses.create(
         model=OPENAI_MODEL_CHAT,
         input=messages
     )
@@ -515,7 +515,7 @@ async def generate_query_sentence(question: str, customer_info: Dict[str, Any], 
     messages.append({"role": "system", "content": PROMPT_REGISTRY['vector_db_query']['system']})
     messages.append({"role": "user", "content": PROMPT_REGISTRY['vector_db_query']['user_template'].format(customer_info=customer_info, question=question, history_summary=history_summary)})
 
-    resp = openai_client.responses.create(
+    resp = await openai_client.responses.create(
         model=OPENAI_MODEL_CHAT,
         input=messages
     )
@@ -527,8 +527,9 @@ async def generate_query_sentence(question: str, customer_info: Dict[str, Any], 
 async def run_pre_prompt(prompt_keys: List[str], question:str, customer_info: Dict[str, Any],
                         history_summary: List[Dict[str, str]] = None) -> Dict[str,str]:
     target_sections = []
+    query_sentence = question
     if 'guess_sections' in prompt_keys:
-        target_sections= guess_sections(question, history_summary)
+        target_sections= await guess_sections(question, history_summary)
     if 'user_info_update' in prompt_keys:
         await update_cutsomer_info(question, customer_info)
     if 'vector_db_query' in prompt_keys:
@@ -538,7 +539,7 @@ async def run_pre_prompt(prompt_keys: List[str], question:str, customer_info: Di
     car_info = []
 
     
-    raw_hits = search_raw_hits(query_sentence, sections=target_sections, k_per_section=3)
+    raw_hits = await search_raw_hits(query_sentence, sections=target_sections, k_per_section=3)
     grouped = aggregate_by_car(raw_hits)
     top_cars = select_top_cars(grouped, top_n=3)
     car_info = "\n\n".join(
@@ -603,10 +604,12 @@ def main() -> None:
 
     customer_info_file = Path(PROJECT_ROOT) / "chatbot" / "customer_info.json"
     customer_info: Dict[str, Any] = load_cutsomer_info(customer_info_file) 
-    prompt_keys = classify_pre_task(
-        args.question,
-        history_summary,
-        customer_info,
+    prompt_keys = asyncio.run(
+        classify_pre_task(
+            args.question,
+            history_summary,
+            customer_info,
+        )
     )
     print(f"선택된 작업: {prompt_keys}")
 
