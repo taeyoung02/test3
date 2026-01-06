@@ -532,7 +532,7 @@ async def run_pre_prompt(prompt_keys: List[str], question:str, customer_info: Di
     if 'user_info_update' in prompt_keys:
         await update_cutsomer_info(question, customer_info)
     if 'vector_db_query' in prompt_keys:
-        query_sentence= await generate_query_sentence
+        query_sentence= await generate_query_sentence(question, customer_info, history_summary)
     top_cars = []
     car_json_data: Dict[str, Any] | None = None
     car_info = []
@@ -553,9 +553,9 @@ async def run_pre_prompt(prompt_keys: List[str], question:str, customer_info: Di
         print("추천할 차량이 없습니다.")
         return
 
-
-    # 설득 단계 대비: car_json_data 로드 (설득 프롬프트에서 필요한 섹션 raw만 추출)
-    json_filename = []
+    # TODO
+    # 설득 단계 대비: car_json_data 로드 (guess_sections도 실행된경우 설득 프롬프트에서 필요한 섹션 raw만 추출) 또는 vector_db_query도 실행된경우 필요한 섹션 raw만 추출) 
+    json_filenames = []
     for car_id, car_info in range(top_cars):
         print("\n=== JSON 파일 찾기 ===")
         car_data_dir = Path(PROJECT_ROOT) / "chatbot" / "car_data"
@@ -567,6 +567,7 @@ async def run_pre_prompt(prompt_keys: List[str], question:str, customer_info: Di
                 car_json_data = load_car_json_data(json_filename)
                 if car_json_data:
                     print("  → JSON 데이터 로드 완료")
+                    json_filenames.append(json_filename)
                 else:
                     print("  → JSON 데이터 로드 실패")
             except Exception as e:
@@ -574,9 +575,8 @@ async def run_pre_prompt(prompt_keys: List[str], question:str, customer_info: Di
                 car_json_data = None
         else:
             print(f"  → {car_id}: 파일을 찾을 수 없습니다")
-            query_result= await 
     
-    return {target_sections: target_sections, }
+    return {target_sections: target_sections, car_json_data: car_json_data, }
 
 # ---------------------------------------------------------------------------
 # CLI
