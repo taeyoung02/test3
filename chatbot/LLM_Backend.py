@@ -504,8 +504,13 @@ async def update_cutsomer_info(question: str, customer_info: Dict[str, Any]) -> 
     
     customer_info_file = Path(PROJECT_ROOT) / "chatbot" / "customer_info.json"
     try:
+        parsed_obj = json.loads(answer)
+    except json.JSONDecodeError as e:
+        print(f"유저 정보 파싱 실패: {e}")
+        return
+    try:
         with open(customer_info_file, 'w', encoding='utf-8') as f:
-            json.dump(answer, f, ensure_ascii=False)
+            json.dump(parsed_obj, f, ensure_ascii=False)
     except Exception as e:
         print(f"유저 정보 저장 실패: {e}")
 
