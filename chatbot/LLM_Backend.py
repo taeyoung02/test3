@@ -245,9 +245,9 @@ def select_top_cars(grouped, top_n=3):
 # ---------------------------------------------------------------------------
 # 해야할 사전 작업 추론
 # ---------------------------------------------------------------------------
-def classify_pre_task(
+async def classify_pre_task(
     question: str,
-    history_summary: List[Dict[str, str]] = None,
+    history_summary: str | None = None,
     customer_info: Dict[str, Any] = None
 ) -> List[str]:
     """
@@ -262,7 +262,7 @@ def classify_pre_task(
         프롬프트 키 리스트 (예: ["guess_sections"] 또는 ["user_info_update", "vector_db_query"])
     """
     if history_summary is None:
-        history_summary = []
+        history_summary = ""
     if customer_info is None:
         customer_info = {}
     
@@ -274,7 +274,7 @@ def classify_pre_task(
     )
     
     try:
-        resp = openai_client.responses.create(
+        resp = await openai_client.responses.create(
             model=OPENAI_MODEL_CHAT,
             input=[
                 {"role": "system", "content": PRE_STAGE_CLASSIFICATION_SYSTEM},
@@ -474,10 +474,13 @@ def save_conversation_history(history: List[Dict[str, str]], history_file: Path)
 #         print(f"설득 단계 car_json_data 처리 중 오류: {e}")
 
 
-def guess_sections(question: str, history_summary: List[Dict[str, str]] = None) -> List[str]:
-    user_prompt = PROMPT_REGISTRY["guess_sections"]["user_template"].format(question=question, history_summary=history_summary) 
+async def guess_sections(question: str, history_summary: str | None = None) -> List[str]:
+    user_prompt = PROMPT_REGISTRY["guess_sections"]["user_template"].format(
+        question=question,
+        history_summary=history_summary if history_summary else "(대화 없음)",
+    )
 
-    resp = openai_client.responses.create(
+    resp = await openai_client.responses.create(
         model=OPENAI_MODEL_CHAT,
         input=[
             {"role": "system", "content": PROMPT_REGISTRY["guess_sections"]["system"]},
@@ -496,7 +499,7 @@ async def update_cutsomer_info(question: str, customer_info: Dict[str, Any]) -> 
     messages.append({"role": "system", "content": PROMPT_REGISTRY['user_info_update']['system']})
     messages.append({"role": "user", "content": PROMPT_REGISTRY['user_info_update']['user_template'].format(customer_info=customer_info, question=question)})
 
-    resp = openai_client.responses.create(
+    resp = await openai_client.responses.create(
         model=OPENAI_MODEL_CHAT,
         input=messages
     )
@@ -509,13 +512,20 @@ async def update_cutsomer_info(question: str, customer_info: Dict[str, Any]) -> 
     except Exception as e:
         print(f"유저 정보 저장 실패: {e}")
 
-async def generate_query_sentence(question: str, customer_info: Dict[str, Any], history_summary: List[Dict[str, str]] = None):
+async def generate_query_sentence(question: str, customer_info: Dict[str, Any], history_summary: str | None = None):
     messages = []
     # 시스템 메시지는 항상 첫 번째에 (히스토리에는 포함하지 않음)
     messages.append({"role": "system", "content": PROMPT_REGISTRY['vector_db_query']['system']})
-    messages.append({"role": "user", "content": PROMPT_REGISTRY['vector_db_query']['user_template'].format(customer_info=customer_info, question=question, history_summary=history_summary)})
+    messages.append({
+        "role": "user",
+        "content": PROMPT_REGISTRY['vector_db_query']['user_template'].format(
+            customer_info=customer_info,
+            question=question,
+            history_summary=history_summary if history_summary else "(대화 없음)",
+        ),
+    })
 
-    resp = openai_client.responses.create(
+    resp = await openai_client.responses.create(
         model=OPENAI_MODEL_CHAT,
         input=messages
     )
@@ -524,12 +534,16 @@ async def generate_query_sentence(question: str, customer_info: Dict[str, Any], 
     
 
 
-async def run_pre_prompt(prompt_keys: List[str], question:str, customer_info: Dict[str, Any],
-                        history_summary: List[Dict[str, str]] = None) -> Dict[str,str]:
+async def run_pre_prompt(
+    prompt_keys: List[str],
+    question: str,
+    customer_info: Dict[str, Any],
+    history_summary: str | None = None,
+) -> Dict[str, Any]:
     target_sections = []
     query_sentence = question
     if 'guess_sections' in prompt_keys:
-        target_sections= guess_sections(question, history_summary)
+        target_sections = await guess_sections(question, history_summary)
     if 'user_info_update' in prompt_keys:
         await update_cutsomer_info(question, customer_info)
     if 'vector_db_query' in prompt_keys:
@@ -557,38 +571,72 @@ async def run_pre_prompt(prompt_keys: List[str], question:str, customer_info: Di
     # 검색 결과가 없으면 이후 단계 중단
     if not top_cars:
         print("추천할 차량이 없습니다.")
-        return
+        return {}
 
-    # TODO
-    # 설득 단계 대비: car_json_data 로드 (guess_sections도 실행된경우 설득 프롬프트에서 필요한 섹션 raw만 추출) 또는 vector_db_query도 실행된경우 필요한 섹션 raw만 추출) 
-    json_filenames = []
-    for car_id, car_info in range(top_cars):
-        print("\n=== JSON 파일 찾기 ===")
-        car_data_dir = Path(PROJECT_ROOT) / "chatbot" / "car_data"
-        json_filename = find_json_file_for_car_id(car_id, car_data_dir)
+    # 설득 단계 대비: car_json_data 로드 및 섹션별 raw 값 추출
+    print("\n=== JSON 파일 찾기 ===")
+    car_json_files = get_car_json_files(top_cars)
+    selected_sections_by_car: Dict[str, Dict[str, Any]] = {}
 
-        if json_filename:
-            print(f"  → {car_id}: {json_filename}")
-            try:
-                car_json_data = load_car_json_data(json_filename)
-                if car_json_data:
-                    print("  → JSON 데이터 로드 완료")
-                    json_filenames.append(json_filename)
+    def extract_sections_from_data(
+        data: Any, car_id: str, sections: List[str]
+    ) -> Dict[str, Any]:
+        if not sections:
+            sections = ALL_SECTIONS
+        selected: Dict[str, Any] = {}
+        if isinstance(data, dict):
+            for section in sections:
+                if section == "summary":
+                    value = data.get("summary_text")
                 else:
-                    print("  → JSON 데이터 로드 실패")
-            except Exception as e:
-                print(f"  → JSON 로드 중 오류: {e}")
-                car_json_data = None
-        else:
-            print(f"  → {car_id}: 파일을 찾을 수 없습니다")
-    
-    return {target_sections: target_sections, car_json_data: car_json_data, }
+                    value = data.get(section)
+                if value is not None:
+                    selected[section] = value
+            return selected
+        if isinstance(data, list):
+            for item in data:
+                if not isinstance(item, dict):
+                    continue
+                payload = item.get("payload", {})
+                if payload.get("car_id") != car_id:
+                    continue
+                section = payload.get("section")
+                if section not in sections:
+                    continue
+                raw_value = payload.get("raw", payload)
+                if raw_value is not None:
+                    selected[section] = raw_value
+            return selected
+        return selected
+
+    for car_id, _info in top_cars:
+        json_filename = car_json_files.get(car_id)
+        if not json_filename:
+            continue
+        try:
+            car_json_data = load_car_json_data(json_filename)
+            if car_json_data:
+                selected_sections_by_car[car_id] = extract_sections_from_data(
+                    car_json_data,
+                    car_id,
+                    target_sections,
+                )
+        except Exception as e:
+            print(f"  → JSON 로드 중 오류: {e}")
+            car_json_data = None
+
+    return {
+        "target_sections": target_sections,
+        "car_json_data": car_json_data,
+        "car_json_files": car_json_files,
+        "selected_sections_by_car": selected_sections_by_car,
+    }
 
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 
-def main() -> None:
+async def main() -> None:
     parser = argparse.ArgumentParser(description="Car-level RAG Search")
     parser.add_argument("--question", required=True)
     args = parser.parse_args()
@@ -609,7 +657,7 @@ def main() -> None:
 
     customer_info_file = Path(PROJECT_ROOT) / "chatbot" / "customer_info.json"
     customer_info: Dict[str, Any] = load_cutsomer_info(customer_info_file) 
-    prompt_keys = classify_pre_task(
+    prompt_keys = await classify_pre_task(
         args.question,
         history_summary,
         customer_info,
@@ -617,7 +665,7 @@ def main() -> None:
     print(f"선택된 작업: {prompt_keys}")
 
     if prompt_keys is not None:
-        pre_result = asyncio.run(run_pre_prompt(prompt_keys, args.question, customer_info, history_summary))
+        pre_result = await run_pre_prompt(prompt_keys, args.question, customer_info, history_summary)
     
 
     print(pre_result)
@@ -644,4 +692,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
