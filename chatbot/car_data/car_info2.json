@@ -1,0 +1,333 @@
+[
+  {
+    "id": "car_A6_45TFSI_2021_001_summary",
+    "vector": [],
+    "payload": {
+      "car_id": "A6_45TFSI_2021_001",
+      "section": "summary",
+      "raw": {
+        "summary_text": "2021년식 아우디 A6 45 TFSI 콰트로 프리미엄, 주행 32,800km. 1인 신조 차량으로 콰트로 AWD, 매트릭스 LED 헤드램프, 헤드업 디스플레이, 4존 에어컨 포함. 사고 이력 없이 소모품 정비 완료.",
+        "price_krw": 52000000
+      },
+      "nl": "2021년식 아우디 A6 45 TFSI 콰트로 프리미엄, 주행 32,800km. 1인 신조 차량으로 콰트로 AWD, 매트릭스 LED 헤드램프, 헤드업 디스플레이, 4존 에어컨 포함. 사고 이력 없이 소모품 정비 완료. 판매 희망가는 약 52,000,000원 수준이다."
+    }
+  },
+  {
+    "id": "car_A6_45TFSI_2021_001_basic_info",
+    "vector": [],
+    "payload": {
+      "car_id": "A6_45TFSI_2021_001",
+      "section": "basic_info",
+      "raw": {
+        "model_name": "Audi A6 45 TFSI quattro Premium",
+        "manufacturer": "Audi",
+        "first_registration_date": "2021-06-22",
+        "vin": "WAUZZZF2XMN135421",
+        "transmission_type": "자동 7단 S-tronic",
+        "exterior_color": "글래이셔 화이트",
+        "interior_color": "오카피 브라운",
+        "displacement_cc": 1984,
+        "engine_type": "EA888 evo4",
+        "usage_type": "자가용",
+        "fuel_type": "가솔린",
+        "first_insurance_date": "2021-06-23",
+        "year": 2021,
+        "mileage_km": 32800,
+        "mileage_status": "양호"
+      },
+      "nl": "2021년식 Audi Audi A6 45 TFSI quattro Premium (글래이셔 화이트/오카피 브라운) | 자동 7단 S-tronic / EA888 evo4 1984cc / 가솔린 | 자가용, 주행 32,800km, 양호 | 최초등록 2021-06-22, 최초보험 2021-06-23"
+    }
+  },
+  {
+    "id": "car_A6_45TFSI_2021_001_special_usage_history",
+    "vector": [],
+    "payload": {
+      "car_id": "A6_45TFSI_2021_001",
+      "section": "special_usage_history",
+      "raw": {
+        "rental_car": false,
+        "taxi": false,
+        "government_use": false,
+        "description": "개인 자가용 전용, 특수 용도 없음"
+      },
+      "nl": "렌트 이력 없음 / 택시 등록 없음 / 관용 차량 이력 없음 / 개인 자가용 전용, 특수 용도 없음"
+    }
+  },
+  {
+    "id": "car_A6_45TFSI_2021_001_special_accident_history",
+    "vector": [],
+    "payload": {
+      "car_id": "A6_45TFSI_2021_001",
+      "section": "special_accident_history",
+      "raw": {
+        "total_loss": {
+          "occurred": false,
+          "description": "전손 사고 없음"
+        },
+        "theft": {
+          "occurred": false,
+          "description": "도난 사고 없음"
+        },
+        "flood": {
+          "occurred": false,
+          "description": "침수 사고 없음"
+        }
+      },
+      "nl": "전손 사고 없음 (전손 사고 없음) / 도난 사고 없음 (도난 사고 없음) / 침수 사고 없음 (침수 사고 없음)"
+    }
+  },
+  {
+    "id": "car_A6_45TFSI_2021_001_registration_history",
+    "vector": [],
+    "payload": {
+      "car_id": "A6_45TFSI_2021_001",
+      "section": "registration_change_history",
+      "raw": [
+        {
+          "change_date": "2021-06-22",
+          "plate_number": "38버1234",
+          "owner_change": false,
+          "usage_type": "자가용"
+        }
+      ],
+      "nl": "2021-06-22 38버1234 (번호 변경, 용도 자가용)"
+    }
+  },
+  {
+    "id": "car_A6_45TFSI_2021_001_insurance_accident_history",
+    "vector": [],
+    "payload": {
+      "car_id": "A6_45TFSI_2021_001",
+      "section": "insurance_accident_history",
+      "raw": [],
+      "nl": "보험 처리된 사고 기록이 없다."
+    }
+  },
+  {
+    "id": "car_A6_45TFSI_2021_001_options",
+    "vector": [],
+    "payload": {
+      "car_id": "A6_45TFSI_2021_001",
+      "section": "options",
+      "raw": {
+        "exterior": {
+          "roof_rack": false,
+          "integrated_turn_signal": true,
+          "side_mirror": {
+            "manual": false,
+            "heated": true,
+            "auto_angle_adjustment": true,
+            "power_folding": true
+          },
+          "sunroof": {
+            "standard": false,
+            "dual": false,
+            "panoramic": true
+          },
+          "windshield": {
+            "wiper_defrost": true,
+            "uv_protection": true,
+            "rain_sensor_wiper": true
+          },
+          "wheels": {
+            "steel": false,
+            "aluminum": true,
+            "chrome": false,
+            "wide_tire": true
+          },
+          "headlamp": {
+            "HID": false,
+            "LED": true,
+            "laser_light": false,
+            "adaptive": true,
+            "high_beam_assist": true,
+            "halogen": false,
+            "projection_type": false
+          }
+        },
+        "interior": {
+          "rearview_mirror": {
+            "electronic_ecm": true,
+            "hipass_integrated": true,
+            "rear_view_mirror": false
+          },
+          "seats": {
+            "material": "가죽",
+            "power_seats": {
+              "driver": true,
+              "passenger": true,
+              "rear": false
+            },
+            "heated_seats": {
+              "front": true,
+              "rear": true
+            },
+            "ventilated_seats": {
+              "driver": true,
+              "passenger": true
+            },
+            "memory_seats": {
+              "driver": true,
+              "passenger": true
+            },
+            "massage_seat": false
+          },
+          "steering_wheel": {
+            "material": "가죽",
+            "heated": true,
+            "telescopic": true,
+            "speed_sensitive": true
+          },
+          "parking_brake": {
+            "type": "전자식"
+          }
+        },
+        "safety": {
+          "airbags": {
+            "driver": true,
+            "passenger": true,
+            "side": true,
+            "curtain": true,
+            "knee": true,
+            "total_count": 8
+          },
+          "driving_control": {
+            "ABS": true,
+            "ESC_VDC_ESP": true,
+            "TCS": true,
+            "VSM": true,
+            "EBD": true,
+            "ESS": true
+          },
+          "sensors_cameras": {
+            "front_sensor": true,
+            "rear_sensor": true,
+            "front_camera": true,
+            "rear_camera": true,
+            "around_view_monitor": true
+          },
+          "advanced_assistance": {
+            "BSD": true,
+            "LDWS": true,
+            "LKAS": true,
+            "FCW": true,
+            "AEB": true,
+            "HAS": true,
+            "TPMS": true,
+            "head_up_display": true
+          },
+          "passive_safety": {
+            "isofix": true,
+            "safety_window": true,
+            "active_headrest": true
+          }
+        },
+        "convenience": {
+          "air_conditioning": {
+            "type": "4존 풀오토",
+            "air_purifier": true
+          },
+          "entry_start": {
+            "smart_key": true,
+            "button_start": true
+          },
+          "driving_aids": {
+            "steering_wheel_remote": true,
+            "power_trunk": true,
+            "auto_parking_assist": true,
+            "cruise_control": "어댑티브 크루즈컨트롤",
+            "hands_free": true
+          },
+          "multimedia": {
+            "navigation": "MMI 내비게이션 플러스",
+            "bluetooth": true,
+            "AUX": true,
+            "USB": true,
+            "speaker": "B&O 3D 사운드",
+            "CD": false,
+            "CD_changer": false,
+            "DVD": false,
+            "MP3": true
+          }
+        }
+      },
+      "nl": "외장: 파노라마 썬루프, LED / 어댑티브 / 하이빔 어시스트 헤드램프, 열선·전동 폴딩 미러, 우적감지/열선 와이퍼, 알루미늄 휠 / 실내: 열선 시트, 통풍 시트, 전동 시트, 메모리 시트, 열선 스티어링휠, 하이패스 ECM 룸미러 / 안전: 첨단 보조: 후측방경보(BSD), 차선이탈경보(LDWS), 차선유지보조(LKAS), 전방충돌경보(FCW), 자동긴급제동(AEB), 오르막밀림방지(HAS), 타이어공기압경보(TPMS), 헤드업 디스플레이(HUD) | 카메라/센서: 전방 카메라, 후방 카메라, 어라운드 뷰, 주차 센서 | 에어백 8개 / 편의: 스마트키, 버튼 시동, 전동 트렁크, 자동 주차 보조, 핸즈프리, 어댑티브 크루즈컨트롤, 4존 풀오토, MMI 내비게이션 플러스, B&O 3D 사운드, 블루투스 오디오, USB 단자"
+    }
+  },
+  {
+    "id": "car_A6_45TFSI_2021_001_seller_info",
+    "vector": [],
+    "payload": {
+      "car_id": "A6_45TFSI_2021_001",
+      "section": "seller_info",
+      "raw": {
+        "dealer_name": "정윤호",
+        "phone_number": "010-2222-7788",
+        "recommendation": "1인 신조, 무사고 차량이며 소모품 교환 내역 보유. 조용하고 안정적인 주행감과 최신 편의·안전 사양으로 강력 추천."
+      },
+      "nl": "담당 정윤호 / 연락처 010-2222-7788 / 1인 신조, 무사고 차량이며 소모품 교환 내역 보유. 조용하고 안정적인 주행감과 최신 편의·안전 사양으로 강력 추천."
+    }
+  },
+  {
+    "id": "car_A6_45TFSI_2021_001_inspection_record",
+    "vector": [],
+    "payload": {
+      "car_id": "A6_45TFSI_2021_001",
+      "section": "inspection_record",
+      "raw": {
+        "overall_condition": {
+          "mileage_tampering": "양호",
+          "emission": {
+            "carbon_monoxide": "합격",
+            "hydrocarbon": "합격",
+            "smoke": "합격"
+          },
+          "tuning_history": {
+            "exists": false,
+            "legal_status": "해당 없음"
+          }
+        },
+        "accident_repair_history": {
+          "exterior_panels": {
+            "hood": "무사고",
+            "front_fender_left": "무사고",
+            "front_fender_right": "무사고",
+            "door_front_left": "무사고",
+            "door_front_right": "무사고",
+            "door_rear_left": "무사고",
+            "door_rear_right": "무사고",
+            "trunk_lid": "무사고",
+            "radiator_support": "무사고",
+            "quarter_panel_left": "무사고",
+            "quarter_panel_right": "무사고",
+            "roof_panel": "무사고",
+            "side_sill_left": "무사고",
+            "side_sill_right": "무사고"
+          },
+          "main_frame": {
+            "front_panel": "무사고",
+            "cross_member": "무사고",
+            "inside_panel_left": "무사고",
+            "inside_panel_right": "무사고",
+            "trunk_floor": "무사고",
+            "rear_panel": "무사고",
+            "side_member_left": "무사고",
+            "side_member_right": "무사고",
+            "wheel_house_left": "무사고",
+            "wheel_house_right": "무사고",
+            "pillar_a_left": "무사고",
+            "pillar_a_right": "무사고",
+            "pillar_b_left": "무사고",
+            "pillar_b_right": "무사고",
+            "pillar_c_left": "무사고",
+            "pillar_c_right": "무사고",
+            "package_tray": "무사고",
+            "dash_panel": "무사고",
+            "floor_panel": "무사고"
+          }
+        }
+      },
+      "nl": "주행거리 판독 양호 / 배출가스 carbon_monoxide:합격, hydrocarbon:합격, smoke:합격 / 튜닝 이력 없음 / 외판: 모든 부위 무사고 / 골격: 모든 부위 무사고"
+    }
+  }
+]

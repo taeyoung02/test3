@@ -1,0 +1,360 @@
+[
+  {
+    "id": "car_BMW320D_2020_001_summary",
+    "vector": [],
+    "payload": {
+      "car_id": "BMW320D_2020_001",
+      "section": "summary",
+      "raw": {
+        "summary_text": "2020년식 BMW 320d M Sport 디젤 모델로, 주행거리 45,320km의 저주행 차량입니다. 파노라마썬루프와 하만카돈 오디오를 포함한 풀옵션 사양이며, 경미한 외판 사고 이력(판금/도색)만 있을 뿐 주요 골격은 무사고입니다. 렌트, 전손, 침수 등 특수 이력이 전혀 없는 깨끗한 차량입니다.",
+        "price_krw": 42000000
+      },
+      "nl": "2020년식 BMW 320d M Sport 디젤 모델로, 주행거리 45,320km의 저주행 차량입니다. 파노라마썬루프와 하만카돈 오디오를 포함한 풀옵션 사양이며, 경미한 외판 사고 이력(판금/도색)만 있을 뿐 주요 골격은 무사고입니다. 렌트, 전손, 침수 등 특수 이력이 전혀 없는 깨끗한 차량입니다. 판매 희망가는 약 42,000,000원 수준이다."
+    }
+  },
+  {
+    "id": "car_BMW320D_2020_001_basic_info",
+    "vector": [],
+    "payload": {
+      "car_id": "BMW320D_2020_001",
+      "section": "basic_info",
+      "raw": {
+        "model_name": "BMW 320d M Sport",
+        "manufacturer": "BMW",
+        "first_registration_date": "2020-03-15",
+        "vin": "LVPTH603PP416580",
+        "transmission_type": "자동 8단",
+        "exterior_color": "알파인 화이트",
+        "interior_color": "블랙 베르니나 레더",
+        "displacement_cc": 1995,
+        "engine_type": "B47D20A",
+        "usage_type": "자가용",
+        "fuel_type": "디젤",
+        "first_insurance_date": "2020-03-16",
+        "year": 2020,
+        "mileage_km": 45320,
+        "mileage_status": "양호"
+      },
+      "nl": "2020년식 BMW BMW 320d M Sport (알파인 화이트/블랙 베르니나 레더) | 자동 8단 / B47D20A 1995cc / 디젤 | 자가용, 주행 45,320km, 양호 | 최초등록 2020-03-15, 최초보험 2020-03-16"
+    }
+  },
+  {
+    "id": "car_BMW320D_2020_001_special_usage_history",
+    "vector": [],
+    "payload": {
+      "car_id": "BMW320D_2020_001",
+      "section": "special_usage_history",
+      "raw": {
+        "rental_car": false,
+        "taxi": false,
+        "government_use": false,
+        "description": "자가용 단독 사용, 특수 용도 이력 없음"
+      },
+      "nl": "렌트 이력 없음 / 택시 등록 없음 / 관용 차량 이력 없음 / 자가용 단독 사용, 특수 용도 이력 없음"
+    }
+  },
+  {
+    "id": "car_BMW320D_2020_001_special_accident_history",
+    "vector": [],
+    "payload": {
+      "car_id": "BMW320D_2020_001",
+      "section": "special_accident_history",
+      "raw": {
+        "total_loss": {
+          "occurred": false,
+          "description": "전손 보험사고 이력 없음"
+        },
+        "theft": {
+          "occurred": false,
+          "description": "도난 보험사고 이력 없음"
+        },
+        "flood": {
+          "occurred": false,
+          "description": "침수 보험사고 이력 없음"
+        }
+      },
+      "nl": "전손 사고 없음 (전손 보험사고 이력 없음) / 도난 사고 없음 (도난 보험사고 이력 없음) / 침수 사고 없음 (침수 보험사고 이력 없음)"
+    }
+  },
+  {
+    "id": "car_BMW320D_2020_001_registration_history",
+    "vector": [],
+    "payload": {
+      "car_id": "BMW320D_2020_001",
+      "section": "registration_change_history",
+      "raw": [
+        {
+          "change_date": "2020-03-15",
+          "plate_number": "12가3456",
+          "owner_change": false,
+          "usage_type": "자가용"
+        },
+        {
+          "change_date": "2023-07-22",
+          "plate_number": "89나1234",
+          "owner_change": true,
+          "usage_type": "자가용"
+        }
+      ],
+      "nl": "2020-03-15 12가3456 (번호 변경, 용도 자가용) -> 2023-07-22 89나1234 (소유자 변경, 용도 자가용)"
+    }
+  },
+  {
+    "id": "car_BMW320D_2020_001_insurance_accident_history",
+    "vector": [],
+    "payload": {
+      "car_id": "BMW320D_2020_001",
+      "section": "insurance_accident_history",
+      "raw": [
+        {
+          "accident_date": "2022-11-18",
+          "my_car_damage": {
+            "occurred": true,
+            "repair_estimate_krw": 3963015,
+            "parts_cost_krw": 1145330,
+            "labor_cost_krw": 365440,
+            "painting_cost_krw": 2453245,
+            "damaged_parts": [
+              "우측 프론트휀더",
+              "우측 도어"
+            ],
+            "repair_details": "도장, 탈착, 교환, 판금, 수리"
+          },
+          "opponent_insurance": {
+            "processed": true,
+            "property_damage": "대물 가해 처리"
+          },
+          "my_insurance_processed": true
+        }
+      ],
+      "nl": "2022-11-18 사고 / 총 3,963,015원, 손상 부위: 우측 프론트휀더, 우측 도어, 도장, 탈착, 교환, 판금, 수리"
+    }
+  },
+  {
+    "id": "car_BMW320D_2020_001_options",
+    "vector": [],
+    "payload": {
+      "car_id": "BMW320D_2020_001",
+      "section": "options",
+      "raw": {
+        "exterior": {
+          "roof_rack": false,
+          "integrated_turn_signal": true,
+          "side_mirror": {
+            "manual": false,
+            "heated": true,
+            "auto_angle_adjustment": true,
+            "power_folding": true
+          },
+          "sunroof": {
+            "standard": false,
+            "dual": false,
+            "panoramic": true
+          },
+          "windshield": {
+            "wiper_defrost": true,
+            "uv_protection": true,
+            "rain_sensor_wiper": true
+          },
+          "wheels": {
+            "steel": false,
+            "aluminum": true,
+            "chrome": false,
+            "wide_tire": true
+          },
+          "headlamp": {
+            "HID": false,
+            "LED": true,
+            "laser_light": false,
+            "adaptive": true,
+            "high_beam_assist": true,
+            "halogen": false,
+            "projection_type": false
+          }
+        },
+        "interior": {
+          "rearview_mirror": {
+            "electronic_ecm": true,
+            "hipass_integrated": true,
+            "rear_view_mirror": false
+          },
+          "seats": {
+            "material": "가죽",
+            "power_seats": {
+              "driver": true,
+              "passenger": true,
+              "rear": false
+            },
+            "heated_seats": {
+              "front": true,
+              "rear": false
+            },
+            "ventilated_seats": {
+              "driver": true,
+              "passenger": false
+            },
+            "memory_seats": {
+              "driver": true,
+              "passenger": false
+            },
+            "massage_seat": false
+          },
+          "steering_wheel": {
+            "material": "가죽",
+            "heated": true,
+            "telescopic": true,
+            "speed_sensitive": true
+          },
+          "parking_brake": {
+            "type": "전자식"
+          }
+        },
+        "safety": {
+          "airbags": {
+            "driver": true,
+            "passenger": true,
+            "side": true,
+            "curtain": true,
+            "knee": true,
+            "total_count": 8
+          },
+          "driving_control": {
+            "ABS": true,
+            "ESC_VDC_ESP": true,
+            "TCS": true,
+            "VSM": true,
+            "EBD": true,
+            "ESS": true
+          },
+          "sensors_cameras": {
+            "front_sensor": true,
+            "rear_sensor": true,
+            "front_camera": true,
+            "rear_camera": true,
+            "around_view_monitor": true
+          },
+          "advanced_assistance": {
+            "BSD": true,
+            "LDWS": true,
+            "LKAS": true,
+            "FCW": true,
+            "AEB": true,
+            "HAS": true,
+            "TPMS": true,
+            "head_up_display": true
+          },
+          "passive_safety": {
+            "isofix": true,
+            "safety_window": true,
+            "active_headrest": true
+          }
+        },
+        "convenience": {
+          "air_conditioning": {
+            "type": "풀오토",
+            "air_purifier": true
+          },
+          "entry_start": {
+            "smart_key": true,
+            "button_start": true
+          },
+          "driving_aids": {
+            "steering_wheel_remote": true,
+            "power_trunk": true,
+            "auto_parking_assist": true,
+            "cruise_control": "스마트크루즈컨트롤",
+            "hands_free": true
+          },
+          "multimedia": {
+            "navigation": "BMW iDrive 내비게이션",
+            "bluetooth": true,
+            "AUX": true,
+            "USB": true,
+            "speaker": "하만카돈 프리미엄 사운드 16스피커",
+            "CD": false,
+            "CD_changer": false,
+            "DVD": false,
+            "MP3": false
+          }
+        }
+      },
+      "nl": "외장: 파노라마 썬루프, LED / 어댑티브 / 하이빔 어시스트 헤드램프, 열선·전동 폴딩 미러, 우적감지/열선 와이퍼, 알루미늄 휠 / 실내: 열선 시트, 통풍 시트, 전동 시트, 메모리 시트, 열선 스티어링휠, 하이패스 ECM 룸미러 / 안전: 첨단 보조: 후측방경보(BSD), 차선이탈경보(LDWS), 차선유지보조(LKAS), 전방충돌경보(FCW), 자동긴급제동(AEB), 오르막밀림방지(HAS), 타이어공기압경보(TPMS), 헤드업 디스플레이(HUD) | 카메라/센서: 전방 카메라, 후방 카메라, 어라운드 뷰, 주차 센서 | 에어백 8개 / 편의: 스마트키, 버튼 시동, 전동 트렁크, 자동 주차 보조, 핸즈프리, 스마트 크루즈컨트롤, 풀오토, BMW iDrive 내비게이션, 하만카돈 프리미엄 사운드 16스피커, 블루투스 오디오, USB 단자"
+    }
+  },
+  {
+    "id": "car_BMW320D_2020_001_seller_info",
+    "vector": [],
+    "payload": {
+      "car_id": "BMW320D_2020_001",
+      "section": "seller_info",
+      "raw": {
+        "dealer_name": "김철수",
+        "phone_number": "010-1234-5678",
+        "recommendation": "주행거리 4만km대 저주행, M스포츠 패키지 풀옵션 차량. 정기점검 이력 완벽, 사고는 경미한 접촉사고 1회만 있으며 전체적으로 매우 깨끗한 상태입니다."
+      },
+      "nl": "담당 김철수 / 연락처 010-1234-5678 / 주행거리 4만km대 저주행, M스포츠 패키지 풀옵션 차량. 정기점검 이력 완벽, 사고는 경미한 접촉사고 1회만 있으며 전체적으로 매우 깨끗한 상태입니다."
+    }
+  },
+  {
+    "id": "car_BMW320D_2020_001_inspection_record",
+    "vector": [],
+    "payload": {
+      "car_id": "BMW320D_2020_001",
+      "section": "inspection_record",
+      "raw": {
+        "overall_condition": {
+          "mileage_tampering": "양호",
+          "emission": {
+            "carbon_monoxide": "합격",
+            "hydrocarbon": "합격",
+            "smoke": "합격"
+          },
+          "tuning_history": {
+            "exists": false,
+            "legal_status": "해당 없음"
+          }
+        },
+        "accident_repair_history": {
+          "exterior_panels": {
+            "hood": "교환",
+            "front_fender_left": "무사고",
+            "front_fender_right": "판금/도색",
+            "door_front_left": "무사고",
+            "door_front_right": "판금/도색",
+            "door_rear_left": "무사고",
+            "door_rear_right": "무사고",
+            "trunk_lid": "무사고",
+            "radiator_support": "무사고",
+            "quarter_panel_left": "무사고",
+            "quarter_panel_right": "무사고",
+            "roof_panel": "무사고",
+            "side_sill_left": "무사고",
+            "side_sill_right": "무사고"
+          },
+          "main_frame": {
+            "front_panel": "무사고",
+            "cross_member": "무사고",
+            "inside_panel_left": "무사고",
+            "inside_panel_right": "무사고",
+            "trunk_floor": "무사고",
+            "rear_panel": "무사고",
+            "side_member_left": "무사고",
+            "side_member_right": "무사고",
+            "wheel_house_left": "무사고",
+            "wheel_house_right": "무사고",
+            "pillar_a_left": "무사고",
+            "pillar_a_right": "무사고",
+            "pillar_b_left": "무사고",
+            "pillar_b_right": "무사고",
+            "pillar_c_left": "무사고",
+            "pillar_c_right": "무사고",
+            "package_tray": "무사고",
+            "dash_panel": "무사고",
+            "floor_panel": "무사고"
+          }
+        }
+      },
+      "nl": "주행거리 판독 양호 / 배출가스 carbon_monoxide:합격, hydrocarbon:합격, smoke:합격 / 튜닝 이력 없음 / 외판: hood:교환, front_fender_right:판금/도색, door_front_right:판금/도색 / 골격: 모든 부위 무사고"
+    }
+  }
+]

@@ -1,0 +1,333 @@
+[
+  {
+    "id": "car_DBX707_2023_001_summary",
+    "vector": [],
+    "payload": {
+      "car_id": "DBX707_2023_001",
+      "section": "summary",
+      "raw": {
+        "summary_text": "2023년식 애스턴마틴 DBX707, 주행거리 12,400km. 707마력 AMG V8 트윈터보와 9단 습식 클러치 변속기, 전자식 LSD, 세라믹 브레이크가 적용된 최상위 하이퍼 SUV다. 사고·특수 이력 없이 1인 신조로 관리됐다.",
+        "price_krw": 220000000
+      },
+      "nl": "2023년식 애스턴마틴 DBX707, 주행거리 12,400km. 707마력 AMG V8 트윈터보와 9단 습식 클러치 변속기, 전자식 LSD, 세라믹 브레이크가 적용된 최상위 하이퍼 SUV다. 사고·특수 이력 없이 1인 신조로 관리됐다. 판매 희망가는 약 220,000,000원 수준이다."
+    }
+  },
+  {
+    "id": "car_DBX707_2023_001_basic_info",
+    "vector": [],
+    "payload": {
+      "car_id": "DBX707_2023_001",
+      "section": "basic_info",
+      "raw": {
+        "model_name": "Aston Martin DBX707",
+        "manufacturer": "Aston Martin",
+        "first_registration_date": "2023-02-07",
+        "vin": "SCFVUJAW6PGM07821",
+        "transmission_type": "자동 9단 습식 클러치",
+        "exterior_color": "울트라 마린 블랙",
+        "interior_color": "옵시디언 블랙 / 아이보리 투톤",
+        "displacement_cc": 3982,
+        "engine_type": "AMG M177 V8 트윈터보",
+        "usage_type": "자가용",
+        "fuel_type": "가솔린",
+        "first_insurance_date": "2023-02-08",
+        "year": 2023,
+        "mileage_km": 12400,
+        "mileage_status": "신차급"
+      },
+      "nl": "2023년식 Aston Martin Aston Martin DBX707 (울트라 마린 블랙/옵시디언 블랙 / 아이보리 투톤) | 자동 9단 습식 클러치 / AMG M177 V8 트윈터보 3982cc / 가솔린 | 자가용, 주행 12,400km, 신차급 | 최초등록 2023-02-07, 최초보험 2023-02-08"
+    }
+  },
+  {
+    "id": "car_DBX707_2023_001_special_usage_history",
+    "vector": [],
+    "payload": {
+      "car_id": "DBX707_2023_001",
+      "section": "special_usage_history",
+      "raw": {
+        "rental_car": false,
+        "taxi": false,
+        "government_use": false,
+        "description": "1인 신조 자가용"
+      },
+      "nl": "렌트 이력 없음 / 택시 등록 없음 / 관용 차량 이력 없음 / 1인 신조 자가용"
+    }
+  },
+  {
+    "id": "car_DBX707_2023_001_special_accident_history",
+    "vector": [],
+    "payload": {
+      "car_id": "DBX707_2023_001",
+      "section": "special_accident_history",
+      "raw": {
+        "total_loss": {
+          "occurred": false,
+          "description": "전손 사고 없음"
+        },
+        "theft": {
+          "occurred": false,
+          "description": "도난 사고 없음"
+        },
+        "flood": {
+          "occurred": false,
+          "description": "침수 사고 없음"
+        }
+      },
+      "nl": "전손 사고 없음 (전손 사고 없음) / 도난 사고 없음 (도난 사고 없음) / 침수 사고 없음 (침수 사고 없음)"
+    }
+  },
+  {
+    "id": "car_DBX707_2023_001_registration_history",
+    "vector": [],
+    "payload": {
+      "car_id": "DBX707_2023_001",
+      "section": "registration_change_history",
+      "raw": [
+        {
+          "change_date": "2023-02-07",
+          "plate_number": "12거7070",
+          "owner_change": false,
+          "usage_type": "자가용"
+        }
+      ],
+      "nl": "2023-02-07 12거7070 (번호 변경, 용도 자가용)"
+    }
+  },
+  {
+    "id": "car_DBX707_2023_001_insurance_accident_history",
+    "vector": [],
+    "payload": {
+      "car_id": "DBX707_2023_001",
+      "section": "insurance_accident_history",
+      "raw": [],
+      "nl": "보험 처리된 사고가 없다."
+    }
+  },
+  {
+    "id": "car_DBX707_2023_001_options",
+    "vector": [],
+    "payload": {
+      "car_id": "DBX707_2023_001",
+      "section": "options",
+      "raw": {
+        "exterior": {
+          "roof_rack": false,
+          "integrated_turn_signal": true,
+          "side_mirror": {
+            "manual": false,
+            "heated": true,
+            "auto_angle_adjustment": true,
+            "power_folding": true
+          },
+          "sunroof": {
+            "standard": false,
+            "dual": false,
+            "panoramic": true
+          },
+          "windshield": {
+            "wiper_defrost": true,
+            "uv_protection": true,
+            "rain_sensor_wiper": true
+          },
+          "wheels": {
+            "steel": false,
+            "aluminum": true,
+            "chrome": false,
+            "wide_tire": true
+          },
+          "headlamp": {
+            "HID": false,
+            "LED": true,
+            "laser_light": false,
+            "adaptive": true,
+            "high_beam_assist": true,
+            "halogen": false,
+            "projection_type": false
+          }
+        },
+        "interior": {
+          "rearview_mirror": {
+            "electronic_ecm": true,
+            "hipass_integrated": true,
+            "rear_view_mirror": false
+          },
+          "seats": {
+            "material": "풀 가죽 & 알칸타라",
+            "power_seats": {
+              "driver": true,
+              "passenger": true,
+              "rear": true
+            },
+            "heated_seats": {
+              "front": true,
+              "rear": true
+            },
+            "ventilated_seats": {
+              "driver": true,
+              "passenger": true
+            },
+            "memory_seats": {
+              "driver": true,
+              "passenger": true
+            },
+            "massage_seat": true
+          },
+          "steering_wheel": {
+            "material": "가죽",
+            "heated": true,
+            "telescopic": true,
+            "speed_sensitive": true
+          },
+          "parking_brake": {
+            "type": "전자식"
+          }
+        },
+        "safety": {
+          "airbags": {
+            "driver": true,
+            "passenger": true,
+            "side": true,
+            "curtain": true,
+            "knee": true,
+            "total_count": 10
+          },
+          "driving_control": {
+            "ABS": true,
+            "ESC_VDC_ESP": true,
+            "TCS": true,
+            "VSM": true,
+            "EBD": true,
+            "ESS": true
+          },
+          "sensors_cameras": {
+            "front_sensor": true,
+            "rear_sensor": true,
+            "front_camera": true,
+            "rear_camera": true,
+            "around_view_monitor": true
+          },
+          "advanced_assistance": {
+            "BSD": true,
+            "LDWS": true,
+            "LKAS": true,
+            "FCW": true,
+            "AEB": true,
+            "HAS": true,
+            "TPMS": true,
+            "head_up_display": true
+          },
+          "passive_safety": {
+            "isofix": true,
+            "safety_window": true,
+            "active_headrest": true
+          }
+        },
+        "convenience": {
+          "air_conditioning": {
+            "type": "4존 풀오토",
+            "air_purifier": true
+          },
+          "entry_start": {
+            "smart_key": true,
+            "button_start": true
+          },
+          "driving_aids": {
+            "steering_wheel_remote": true,
+            "power_trunk": true,
+            "auto_parking_assist": true,
+            "cruise_control": "어댑티브 크루즈컨트롤",
+            "hands_free": true
+          },
+          "multimedia": {
+            "navigation": "Aston Martin 인포테인먼트",
+            "bluetooth": true,
+            "AUX": true,
+            "USB": true,
+            "speaker": "Bang & Olufsen BeoSound",
+            "CD": false,
+            "CD_changer": false,
+            "DVD": false,
+            "MP3": true
+          }
+        }
+      },
+      "nl": "외장: 파노라마 썬루프, LED / 어댑티브 / 하이빔 어시스트 헤드램프, 열선·전동 폴딩 미러, 우적감지/열선 와이퍼, 알루미늄 휠 / 실내: 열선 시트, 통풍 시트, 전동 시트, 메모리 시트, 열선 스티어링휠, 하이패스 ECM 룸미러 / 안전: 첨단 보조: 후측방경보(BSD), 차선이탈경보(LDWS), 차선유지보조(LKAS), 전방충돌경보(FCW), 자동긴급제동(AEB), 오르막밀림방지(HAS), 타이어공기압경보(TPMS), 헤드업 디스플레이(HUD) | 카메라/센서: 전방 카메라, 후방 카메라, 어라운드 뷰, 주차 센서 | 에어백 10개 / 편의: 스마트키, 버튼 시동, 전동 트렁크, 자동 주차 보조, 핸즈프리, 어댑티브 크루즈컨트롤, 4존 풀오토, Aston Martin 인포테인먼트, Bang & Olufsen BeoSound, 블루투스 오디오, USB 단자"
+    }
+  },
+  {
+    "id": "car_DBX707_2023_001_seller_info",
+    "vector": [],
+    "payload": {
+      "car_id": "DBX707_2023_001",
+      "section": "seller_info",
+      "raw": {
+        "dealer_name": "윤태선",
+        "phone_number": "010-3434-7575",
+        "recommendation": "애스턴마틴 공식 서비스센터 정비 이력을 갖춘 1인 신조 차량으로, 희소성과 성능을 동시에 원하는 고객께 강력 추천드립니다."
+      },
+      "nl": "담당 윤태선 / 연락처 010-3434-7575 / 애스턴마틴 공식 서비스센터 정비 이력을 갖춘 1인 신조 차량으로, 희소성과 성능을 동시에 원하는 고객께 강력 추천드립니다."
+    }
+  },
+  {
+    "id": "car_DBX707_2023_001_inspection_record",
+    "vector": [],
+    "payload": {
+      "car_id": "DBX707_2023_001",
+      "section": "inspection_record",
+      "raw": {
+        "overall_condition": {
+          "mileage_tampering": "양호",
+          "emission": {
+            "carbon_monoxide": "합격",
+            "hydrocarbon": "합격",
+            "smoke": "합격"
+          },
+          "tuning_history": {
+            "exists": false,
+            "legal_status": "해당 없음"
+          }
+        },
+        "accident_repair_history": {
+          "exterior_panels": {
+            "hood": "무사고",
+            "front_fender_left": "무사고",
+            "front_fender_right": "무사고",
+            "door_front_left": "무사고",
+            "door_front_right": "무사고",
+            "door_rear_left": "무사고",
+            "door_rear_right": "무사고",
+            "trunk_lid": "무사고",
+            "radiator_support": "무사고",
+            "quarter_panel_left": "무사고",
+            "quarter_panel_right": "무사고",
+            "roof_panel": "무사고",
+            "side_sill_left": "무사고",
+            "side_sill_right": "무사고"
+          },
+          "main_frame": {
+            "front_panel": "무사고",
+            "cross_member": "무사고",
+            "inside_panel_left": "무사고",
+            "inside_panel_right": "무사고",
+            "trunk_floor": "무사고",
+            "rear_panel": "무사고",
+            "side_member_left": "무사고",
+            "side_member_right": "무사고",
+            "wheel_house_left": "무사고",
+            "wheel_house_right": "무사고",
+            "pillar_a_left": "무사고",
+            "pillar_a_right": "무사고",
+            "pillar_b_left": "무사고",
+            "pillar_b_right": "무사고",
+            "pillar_c_left": "무사고",
+            "pillar_c_right": "무사고",
+            "package_tray": "무사고",
+            "dash_panel": "무사고",
+            "floor_panel": "무사고"
+          }
+        }
+      },
+      "nl": "주행거리 판독 양호 / 배출가스 carbon_monoxide:합격, hydrocarbon:합격, smoke:합격 / 튜닝 이력 없음 / 외판: 모든 부위 무사고 / 골격: 모든 부위 무사고"
+    }
+  }
+]
