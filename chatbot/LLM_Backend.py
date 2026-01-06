@@ -245,11 +245,11 @@ def select_top_cars(grouped, top_n=3):
 # ---------------------------------------------------------------------------
 # 해야할 사전 작업 추론
 # ---------------------------------------------------------------------------
-def classify_pre_task(
+async def classify_pre_task(
     question: str,
-    history_summary: List[Dict[str, str]] = None,
-    customer_info: Dict[str, Any] = None
-) -> List[str]:
+    history_summary: str | None = None,
+    customer_info: Dict[str, Any] | None = None,
+) -> List[str] | None:
     """
     대화 단계를 분류하여 필요한 프롬프트 키 리스트를 반환합니다.
     
@@ -262,7 +262,7 @@ def classify_pre_task(
         프롬프트 키 리스트 (예: ["guess_sections"] 또는 ["user_info_update", "vector_db_query"])
     """
     if history_summary is None:
-        history_summary = []
+        history_summary = ""
     if customer_info is None:
         customer_info = {}
     
@@ -274,7 +274,7 @@ def classify_pre_task(
     )
     
     try:
-        resp = openai_client.responses.create(
+        resp = await openai_client.responses.create(
             model=OPENAI_MODEL_CHAT,
             input=[
                 {"role": "system", "content": PRE_STAGE_CLASSIFICATION_SYSTEM},
@@ -474,10 +474,13 @@ def save_conversation_history(history: List[Dict[str, str]], history_file: Path)
 #         print(f"설득 단계 car_json_data 처리 중 오류: {e}")
 
 
-def guess_sections(question: str, history_summary: List[Dict[str, str]] = None) -> List[str]:
-    user_prompt = PROMPT_REGISTRY["guess_sections"]["user_template"].format(question=question, history_summary=history_summary) 
+async def guess_sections(question: str, history_summary: str | None = None) -> List[str]:
+    user_prompt = PROMPT_REGISTRY["guess_sections"]["user_template"].format(
+        question=question,
+        history_summary=history_summary or "",
+    )
 
-    resp = openai_client.responses.create(
+    resp = await openai_client.responses.create(
         model=OPENAI_MODEL_CHAT,
         input=[
             {"role": "system", "content": PROMPT_REGISTRY["guess_sections"]["system"]},
@@ -496,7 +499,7 @@ async def update_cutsomer_info(question: str, customer_info: Dict[str, Any]) -> 
     messages.append({"role": "system", "content": PROMPT_REGISTRY['user_info_update']['system']})
     messages.append({"role": "user", "content": PROMPT_REGISTRY['user_info_update']['user_template'].format(customer_info=customer_info, question=question)})
 
-    resp = openai_client.responses.create(
+    resp = await openai_client.responses.create(
         model=OPENAI_MODEL_CHAT,
         input=messages
     )
@@ -509,13 +512,20 @@ async def update_cutsomer_info(question: str, customer_info: Dict[str, Any]) -> 
     except Exception as e:
         print(f"유저 정보 저장 실패: {e}")
 
-async def generate_query_sentence(question: str, customer_info: Dict[str, Any], history_summary: List[Dict[str, str]] = None):
+async def generate_query_sentence(question: str, customer_info: Dict[str, Any], history_summary: str | None = None):
     messages = []
     # 시스템 메시지는 항상 첫 번째에 (히스토리에는 포함하지 않음)
     messages.append({"role": "system", "content": PROMPT_REGISTRY['vector_db_query']['system']})
-    messages.append({"role": "user", "content": PROMPT_REGISTRY['vector_db_query']['user_template'].format(customer_info=customer_info, question=question, history_summary=history_summary)})
+    messages.append({
+        "role": "user",
+        "content": PROMPT_REGISTRY['vector_db_query']['user_template'].format(
+            customer_info=customer_info,
+            question=question,
+            history_summary=history_summary or "",
+        ),
+    })
 
-    resp = openai_client.responses.create(
+    resp = await openai_client.responses.create(
         model=OPENAI_MODEL_CHAT,
         input=messages
     )
@@ -524,15 +534,19 @@ async def generate_query_sentence(question: str, customer_info: Dict[str, Any], 
     
 
 
-async def run_pre_prompt(prompt_keys: List[str], question:str, customer_info: Dict[str, Any],
-                        history_summary: List[Dict[str, str]] = None) -> Dict[str,str]:
+async def run_pre_prompt(
+    prompt_keys: List[str],
+    question: str,
+    customer_info: Dict[str, Any],
+    history_summary: str | None = None,
+) -> Dict[str, str]:
     target_sections = []
     if 'guess_sections' in prompt_keys:
-        target_sections= guess_sections(question, history_summary)
+        target_sections = await guess_sections(question, history_summary)
     if 'user_info_update' in prompt_keys:
         await update_cutsomer_info(question, customer_info)
     if 'vector_db_query' in prompt_keys:
-        query_sentence= await generate_query_sentence(question, customer_info, history_summary)
+        query_sentence = await generate_query_sentence(question, customer_info, history_summary)
     top_cars = []
     car_json_data: Dict[str, Any] | None = None
     car_info = []
@@ -582,7 +596,7 @@ async def run_pre_prompt(prompt_keys: List[str], question:str, customer_info: Di
 # CLI
 # ---------------------------------------------------------------------------
 
-def main() -> None:
+async def main() -> None:
     parser = argparse.ArgumentParser(description="Car-level RAG Search")
     parser.add_argument("--question", required=True)
     args = parser.parse_args()
@@ -603,7 +617,7 @@ def main() -> None:
 
     customer_info_file = Path(PROJECT_ROOT) / "chatbot" / "customer_info.json"
     customer_info: Dict[str, Any] = load_cutsomer_info(customer_info_file) 
-    prompt_keys = classify_pre_task(
+    prompt_keys = await classify_pre_task(
         args.question,
         history_summary,
         customer_info,
@@ -611,7 +625,7 @@ def main() -> None:
     print(f"선택된 작업: {prompt_keys}")
 
     if prompt_keys is not None:
-        pre_result = asyncio.run(run_pre_prompt(prompt_keys, args.question, customer_info, history_summary))
+        pre_result = await run_pre_prompt(prompt_keys, args.question, customer_info, history_summary)
     
 
     print(pre_result)
@@ -638,4 +652,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
