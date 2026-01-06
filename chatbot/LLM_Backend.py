@@ -147,8 +147,8 @@ def load_car_json_data(json_filename: str) -> Optional[Dict[str, Any]]:
 # Embedding
 # ---------------------------------------------------------------------------
 
-def embed_text(text: str) -> List[float]:
-    resp = openai_client.embeddings.create(
+async def embed_text(text: str) -> List[float]:
+    resp = await openai_client.embeddings.create(
         model=OPENAI_MODEL_EMBED,
         input=text,
     )
@@ -175,8 +175,8 @@ ALL_SECTIONS = [
 # Vector retrieval (chunk-level)
 # ---------------------------------------------------------------------------
 
-def search_raw_hits(question: str, sections: List[str], k_per_section: int = 30) -> List[ScoredPoint]:
-    vector = embed_text(question)
+async def search_raw_hits(question: str, sections: List[str], k_per_section: int = 30) -> List[ScoredPoint]:
+    vector = await embed_text(question)
     hits: List[ScoredPoint] = []
     
     if sections:
@@ -553,7 +553,7 @@ async def run_pre_prompt(
     car_info = []
 
     
-    raw_hits = search_raw_hits(query_sentence, sections=target_sections, k_per_section=3)
+    raw_hits = await search_raw_hits(query_sentence, sections=target_sections, k_per_section=3)
     grouped = aggregate_by_car(raw_hits)
     top_cars = select_top_cars(grouped, top_n=3)
     car_info = "\n\n".join(
