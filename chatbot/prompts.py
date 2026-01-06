@@ -124,7 +124,8 @@ PRE_STAGE_CLASSIFICATION_USER_TEMPLATE = textwrap.dedent("""
     판단 규칙:
     1) 차량의 정보중에 고객이 궁금해하거나, 고객에게 제공할 것을 선정해야 할 시 → guess_sections
     2) 차량 추천에 필요한 [성별, 나이, 예산, 구매목적] 중 하나 이상이 고객의 현재 발화에 포함되어 있을 시 → user_info_update
-    3) 차량을 추천하거나 차량 정보를 제공해야할 시 → vector_db_query
+    3) 사용자가 특정 차량 모델명 또는 구체적인 조건(예: 예산, 차종, 옵션 등)을 제시하며 차량 추천/조회가 필요한 경우에만 → vector_db_query
+       - 단순히 "차를 보러 왔어요", "차 좀 보려고요"처럼 의도만 밝히고 조건이나 모델이 없는 경우에는 vector_db_query를 선택하지 마세요.
 
     출력 형식: 쉼표로 구분된 프롬프트 키 (guess_sections 또는 user_info_update,vector_db_query)
 """).strip()
