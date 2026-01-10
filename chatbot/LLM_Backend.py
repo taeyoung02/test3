@@ -548,6 +548,11 @@ async def run_pre_prompt(
         await update_cutsomer_info(question, customer_info)
     if 'vector_db_query' in prompt_keys:
         query_sentence = await generate_query_sentence(question, customer_info, history_summary)
+        if not query_sentence or not query_sentence.strip():
+            query_sentence = question
+    if not target_sections:
+        print("target_sections가 비어 있어 전체 섹션 대상으로 검색합니다.")
+        target_sections = ALL_SECTIONS
     top_cars = []
     car_json_data: Dict[str, Any] | None = None
     car_info = []
